@@ -57,8 +57,8 @@ class LoginPage extends StatelessWidget {
                     color: Colors.blueGrey
                 ),
               ),
-              Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG',
+              Image.asset(
+                'assets/Grosser_Panda.jpg',
                 height: 200,
               ),
 
