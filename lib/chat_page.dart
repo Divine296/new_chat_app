@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:new_chat_app/models/image_model.dart';
 import 'package:new_chat_app/repo/image_repository.dart';
-import '../models/image_model.dart';
 import 'package:new_chat_app/widgets/chat_bubble.dart';
 import 'package:new_chat_app/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +60,7 @@ class _ChatPageState extends State<ChatPage> {
     final username = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
