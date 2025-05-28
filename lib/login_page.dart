@@ -1,9 +1,8 @@
-import 'package:new_chat_app/utils/textfields_styles.dart';
 import 'package:new_chat_app/utils/spaces.dart';
 import 'package:new_chat_app/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -15,9 +14,10 @@ class LoginPage extends StatelessWidget {
       print(userNameController.text);
       print(passwordController.text);
 
+
       Navigator.pushReplacementNamed(context, '/chat',
           arguments: '${userNameController.text}');
-      print('login successful!');
+      print('Login successful!');
     } else {
       print('not successful!');
     }
@@ -25,6 +25,9 @@ class LoginPage extends StatelessWidget {
 
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final _mainUrl =  "https://poojabhaumik.com";
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,32 +46,34 @@ class LoginPage extends StatelessWidget {
                     fontSize: 30,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5),
+                    letterSpacing: 0.5
+                ),
               ),
+
               Text(
                 'Welcome back! \n You\'ve been missed!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
-                    color: Colors.blueGrey),
+                    color: Colors.blueGrey
+                ),
               ),
               Image.asset(
                 'assets/illustration.png',
                 height: 200,
               ),
+
               Form(
                 key: _formkey,
                 child: Column(
                   children: [
                     LoginTextField(
                       hintText: "Enter your username",
-                      validator: (value) {
-                        if (value != null &&
-                            value.isNotEmpty &&
-                            value.length < 5) {
+                      validator: (value){
+                        if(value!=null && value.isNotEmpty && value.length <5){
                           return "Your username should be more than 5 characters";
-                        } else if (value != null && value.isEmpty) {
+                        } else if(value!=null && value.isEmpty){
                           return "Please type your username";
                         }
                         return null;
@@ -95,19 +100,31 @@ class LoginPage extends StatelessWidget {
                   )),
               GestureDetector(
                 onTap: () async {
-                  //todo: Navigate to browser
+                  //TODO: Navigate to browser
                   print('Link clicked!');
-                  if (!await launch('https://poojabhaumik.com')){
+                  if (!await launchUrl(Uri.parse(_mainUrl))) {
                     throw 'Could not launch this!';
                   }
                 },
                 child: Column(
                   children: [
                     Text('Find us on'),
-                    Text('https://poojabhaumik.com'),
+                    Text(_mainUrl),
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialMediaButton.twitter(
+                      size: 20,
+                      color: Colors.blue,
+                      url: "https://twitter.com/pooja_bhaumik"),
+                  SocialMediaButton.linkedin(
+                      url: "https://linkedin.com/in/poojah26")
+                ],
               )
+
             ],
           ),
         ),
