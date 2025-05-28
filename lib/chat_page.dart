@@ -5,7 +5,7 @@ import 'package:new_chat_app/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../models/ chat_message_entity.dart';
+import 'models/ chat_message_entity.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key? key}) : super(key: key);
@@ -29,6 +29,13 @@ class _ChatPageState extends State<ChatPage> {
     print(_chatMessages.length);
     setState(() {
       _messages = _chatMessages;
+    });
+  }
+
+  onMessageSent(ChatMessageEntity entity){
+    _messages.add(entity);
+    setState(() {
+
     });
   }
 
@@ -70,7 +77,9 @@ class _ChatPageState extends State<ChatPage> {
                 }
             ),
           ),
-          ChatInput(),
+          ChatInput(
+            onSubmit: onMessageSent,
+          ),
         ],
       ),
     );
