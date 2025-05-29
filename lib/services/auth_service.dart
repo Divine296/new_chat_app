@@ -22,8 +22,9 @@ class AuthService extends ChangeNotifier{
     return true;
   }
 
-  void logoutUser() {
-    _prefs.clear();
+  Future<void> logoutUser() async {
+    await _prefs.clear();
+    notifyListeners();
   }
 
   String? getUserName() {
