@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:new_chat_app/models/image_model.dart';
 import 'package:new_chat_app/repo/image_repository.dart';
+import 'package:new_chat_app/services/auth_service.dart';
 import 'package:new_chat_app/widgets/chat_bubble.dart';
 import 'package:new_chat_app/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +84,7 @@ class _ChatPageState extends State<ChatPage> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment: _messages[index].author.userName == 'Divine'
+                  alignment: _messages[index].author.userName == AuthService().getUserName()
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   entity: _messages[index],
